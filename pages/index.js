@@ -4,12 +4,18 @@ import Head from "next/head";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logo-text.png"); // put your wordmark file in /public/logo-text.png
+  const [logoSrc, setLogoSrc] = useState("/logo-text.png"); // put /public/logo-text.png (wordmark) + /public/logo.png (fallback)
 
   useEffect(() => {
-    const onScroll = () => setShowSticky(window.scrollY > window.innerHeight * 0.3);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setScrolled(y > 8);
+      setShowSticky(y > window.innerHeight * 0.35);
+    };
     window.addEventListener("scroll", onScroll);
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -23,42 +29,54 @@ export default function Home() {
         />
       </Head>
 
-      {/* ===== HERO (animated gradient, glass nav, full viewport) ===== */}
-      <section className="relative overflow-hidden min-h-screen flex">
-        <div className="absolute inset-0 hero-bg" aria-hidden="true" />
-        <div className="relative z-10 flex-1 mx-auto max-w-6xl px-6 pt-8 pb-10 text-white flex flex-col">
-          {/* Nav */}
-          <header className="mb-10 flex items-center justify-between">
-            <a href="/" className="nav-glass px-3 py-2 flex items-center gap-3">
-              {/* tries /logo-text.png -> falls back to /logo.png */}
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={logoSrc}
-                alt="Underwater Marketing"
-                className="h-9 w-auto object-contain"
-                onError={() => {
-                  if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
-                }}
-              />
-              <span className="sr-only">Underwater Marketing</span>
-            </a>
-            <nav className="hidden md:flex items-center gap-8 text-white/90 nav-glass px-4 py-2">
-              <a href="/" className="hover:text-white">Home</a>
-              <a href="/how-it-works" className="hover:text-white">How It Works</a>
-              <a href="/case-studies/dorado-swim" className="hover:text-white">Case Study</a>
-              <a href="/contact" className="hover:text-white">Contact</a>
-            </nav>
-          </header>
+      {/* ===== FIXED BRAND HEADER (always visible) ===== */}
+      <header
+        className={`fixed top-0 left-0 right-0 z-50 transition-all ${
+          scrolled ? "bg-white/85 backdrop-blur-md shadow-lg" : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto max-w-6xl px-4 md:px-6 h-16 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-3">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoSrc}
+              alt="Underwater Marketing"
+              className={`w-auto ${scrolled ? "h-8" : "h-12"}`} // bigger logo; shrinks on scroll
+              onError={() => {
+                if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
+              }}
+            />
+            <span className="sr-only">Underwater Marketing</span>
+          </a>
 
-          {/* Headline block */}
+          <nav className="hidden md:flex items-center gap-8 text-brand-char">
+            <a href="/" className="hover:text-brand-blue">Home</a>
+            <a href="/how-it-works" className="hover:text-brand-blue">How It Works</a>
+            <a href="/case-studies/dorado-swim" className="hover:text-brand-blue">Case Study</a>
+            <a href="/contact" className="hover:text-brand-blue">Contact</a>
+            <button
+              onClick={() => setOpen(true)}
+              className={`ml-2 btn-header ${scrolled ? "btn-header-solid" : "btn-header-ghost"}`}
+            >
+              Book a Call
+            </button>
+          </nav>
+        </div>
+      </header>
+
+      {/* ===== HERO (full-screen animated gradient) ===== */}
+      <section className="relative overflow-hidden min-h-screen flex">
+        {/* height offset because header is fixed */}
+        <div className="absolute inset-0 hero-bg" aria-hidden="true" />
+        <div className="relative z-10 flex-1 mx-auto max-w-6xl px-6 pt-28 pb-16 text-white flex flex-col">
           <div className="flex-1 grid place-items-center text-center">
             <div>
-              <h1 className="font-display text-[38px] md:text-[64px] font-extrabold leading-[1.05] tracking-tight drop-shadow-sm fade-up">
+              <h1 className="font-display text-[40px] md:text-[68px] font-extrabold leading-[1.05] tracking-tight drop-shadow-sm fade-up">
                 AI Employees for Youth Sports Teams
               </h1>
               <p className="font-heading md:text-xl mt-4 max-w-3xl mx-auto text-white/90 fade-up fade-up-2">
-                Virtual staff that answer every parent fast, book every trial, and keep payments on time —
-                so you can focus on coaching and growth.
+                Virtual staff that answer every parent fast, book every trial, and keep payments on
+                time — so you can focus on coaching and growth.
               </p>
 
               <div className="mt-8 flex items-center justify-center gap-4 fade-up fade-up-3">
@@ -66,10 +84,11 @@ export default function Home() {
                 <a href="#how" className="btn-ghost">See How It Works</a>
               </div>
 
-              {/* Trust badges */}
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto fade-up fade-up-3">
                 {["Replies in under 60s", "83% of inquiries convert", "98% of payments on time"].map((m, i) => (
-                  <div key={m} className={`badge ${i === 1 ? "text-brand-char bg-white" : ""}`}>{m}</div>
+                  <div key={m} className={`badge ${i === 1 ? "text-brand-char bg-white" : ""}`}>
+                    {m}
+                  </div>
                 ))}
               </div>
             </div>
@@ -87,30 +106,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== WHAT WE DO (interactive cards) ===== */}
+      {/* WHAT WE DO */}
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">What We Do</h2>
         <p className="text-center mt-2 text-brand-char/70">Simple, fast, clear — built for busy directors and parents.</p>
 
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            {
-              t: "Instant Replies",
-              s: "Parents get an answer in seconds — never a missed call again.",
-            },
-            {
-              t: "Book & Remind",
-              s: "Every trial, lesson, or practice gets scheduled and reminded — fewer no-shows.",
-            },
-            {
-              t: "On-Time Payments",
-              s: "Billing stays clear, collected, and consistent — no chasing checks.",
-            },
+            { t: "Instant Replies", s: "Parents get an answer in seconds — never a missed call again." },
+            { t: "Book & Remind", s: "Every trial, lesson, or practice gets scheduled and reminded — fewer no-shows." },
+            { t: "On-Time Payments", s: "Billing stays clear, collected, and consistent — no chasing checks." },
           ].map(({ t, s }) => (
-            <div
-              key={t}
-              className="card group cursor-default transition-transform will-change-transform hover:-translate-y-1"
-            >
+            <div key={t} className="card group cursor-default transition-transform will-change-transform hover:-translate-y-1">
               <div className="h-12 w-12 rounded-2xl bg-brand-blue/10 flex items-center justify-center mb-4">
                 <span className="text-brand-blue font-bold text-lg transition-transform group-hover:scale-110">✓</span>
               </div>
@@ -122,7 +129,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== PROOF & OUTCOMES (bigger section) ===== */}
+      {/* PROOF & OUTCOMES */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">Proof & Outcomes</h2>
@@ -163,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== HOW IT WORKS (sharper copy) ===== */}
+      {/* HOW IT WORKS */}
       <section id="how" className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">How It Works</h2>
@@ -189,7 +196,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== MINI CASE: DORADO ===== */}
+      {/* CASE STUDY */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div className="rounded-3xl border border-gray-100 p-8 shadow-soft">
@@ -214,7 +221,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ===== FAQ ===== */}
+      {/* FAQ */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">FAQ</h2>
@@ -237,7 +244,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* FOOTER */}
       <footer className="border-t">
         <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
@@ -245,7 +252,7 @@ export default function Home() {
             <img
               src={logoSrc}
               alt="Underwater Marketing"
-              className="h-6 w-auto object-contain"
+              className="h-6 w-auto"
               onError={() => {
                 if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
               }}
@@ -258,7 +265,7 @@ export default function Home() {
         </div>
       </footer>
 
-      {/* Sticky CTA (adds spacer so nothing is hidden) */}
+      {/* Sticky CTA (spacer so nothing is hidden) */}
       {showSticky && (
         <>
           <div style={{ height: 56 }} aria-hidden="true" />
