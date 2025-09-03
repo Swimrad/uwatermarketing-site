@@ -1,3 +1,27 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Buttons */
+.btn-primary{border-radius:16px;background:#00C853;color:#fff;font-weight:700;padding:12px 22px;box-shadow:0 10px 30px rgba(0,0,0,.15)}
+.btn-primary:hover{opacity:.92}
+.btn-outline{border-radius:16px;border:2px solid #003A70;color:#003A70;font-weight:700;padding:10px 20px}
+.btn-outline:hover{background:#003A70;color:#fff}
+
+/* Ghost on dark hero */
+.btn-ghost{border-radius:16px;border:2px solid rgba(255,255,255,.8);color:#fff;font-weight:700;padding:10px 20px}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+
+/* Cards */
+.card{border-radius:22px;border:1px solid #eee;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:transform .15s, box-shadow .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
+
+/* Slim sticky footer bar */
+.sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#003A70;color:#fff;padding:10px 16px;
+  display:flex;justify-content:space-between;align-items:center;box-shadow:0 -8px 24px rgba(0,0,0,.2)}
+/* Decorative wave behind hero text */
+.wave{
+  position:absolute;inset:auto 0 -120px 0;height:220px;pointer-events:none;opacity:.25;
+  background:radial-gradient(60% 60% at 50% 40%, #00D4FF 0%, rgba(0,212,255,0) 70%),
+             radial-gradient(40% 40% at 20% 90%, #fff 0%, rgba(255,255,255,0) 70%);
+  filter:blur(18px)
+}
