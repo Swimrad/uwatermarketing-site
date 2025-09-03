@@ -1,6 +1,10 @@
+# dependencies & build outputs
 node_modules/
 .next/
 out/
-.DS_Store
-.env
 
+# local / OS noise
+.DS_Store
+*.log
+.env
+.env.local

@@ -1,15 +1,13 @@
+// next.config.js
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  reactStrictMode: true,
+  // Generate a static site in /out for Netlify Drop/static hosting
+  output: 'export',
   images: {
-    // Allow loading remote images if needed. Users should update domains as required.
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: '**'
-      }
-    ]
-  }
+    // Allow next/image without remote loader during static export
+    unoptimized: true,
+  },
+  trailingSlash: true, // safer paths for static hosting
 };
 
 module.exports = nextConfig;
