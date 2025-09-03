@@ -4,16 +4,11 @@ import Head from "next/head";
 
 export default function Home() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const [showSticky, setShowSticky] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logo-text.png"); // put /public/logo-text.png (wordmark) + /public/logo.png (fallback)
+  const [logoSrc, setLogoSrc] = useState("/logo-text.png"); // put /public/logo-text.png (wordmark); keep /logo.png as fallback
 
   useEffect(() => {
-    const onScroll = () => {
-      const y = window.scrollY;
-      setScrolled(y > 8);
-      setShowSticky(y > window.innerHeight * 0.35);
-    };
+    const onScroll = () => setShowSticky(window.scrollY > window.innerHeight * 0.35);
     window.addEventListener("scroll", onScroll);
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
@@ -29,19 +24,15 @@ export default function Home() {
         />
       </Head>
 
-      {/* ===== FIXED BRAND HEADER (always visible) ===== */}
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all ${
-          scrolled ? "bg-white/85 backdrop-blur-md shadow-lg" : "bg-transparent"
-        }`}
-      >
-        <div className="mx-auto max-w-6xl px-4 md:px-6 h-16 flex items-center justify-between">
-          <a href="/" className="flex items-center gap-3">
+      {/* ===== FIXED WHITE HEADER (big logo, readable nav) ===== */}
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="mx-auto max-w-6xl px-4 md:px-6 h-18 flex items-center justify-between">
+          <a href="/" className="flex items-center gap-3 py-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logoSrc}
               alt="Underwater Marketing"
-              className={`w-auto ${scrolled ? "h-8" : "h-12"}`} // bigger logo; shrinks on scroll
+              className="h-12 w-auto object-contain" /* bigger logo */
               onError={() => {
                 if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
               }}
@@ -49,29 +40,26 @@ export default function Home() {
             <span className="sr-only">Underwater Marketing</span>
           </a>
 
-          <nav className="hidden md:flex items-center gap-8 text-brand-char">
+          <nav className="hidden md:flex items-center gap-10 text-brand-char font-semibold">
             <a href="/" className="hover:text-brand-blue">Home</a>
             <a href="/how-it-works" className="hover:text-brand-blue">How It Works</a>
             <a href="/case-studies/dorado-swim" className="hover:text-brand-blue">Case Study</a>
             <a href="/contact" className="hover:text-brand-blue">Contact</a>
-            <button
-              onClick={() => setOpen(true)}
-              className={`ml-2 btn-header ${scrolled ? "btn-header-solid" : "btn-header-ghost"}`}
-            >
+            <button onClick={() => setOpen(true)} className="btn-header-solid">
               Book a Call
             </button>
           </nav>
         </div>
       </header>
 
-      {/* ===== HERO (full-screen animated gradient) ===== */}
+      {/* ===== HERO (full-screen gradient) ===== */}
       <section className="relative overflow-hidden min-h-screen flex">
-        {/* height offset because header is fixed */}
         <div className="absolute inset-0 hero-bg" aria-hidden="true" />
+        {/* top padding accounts for fixed header height */}
         <div className="relative z-10 flex-1 mx-auto max-w-6xl px-6 pt-28 pb-16 text-white flex flex-col">
           <div className="flex-1 grid place-items-center text-center">
             <div>
-              <h1 className="font-display text-[40px] md:text-[68px] font-extrabold leading-[1.05] tracking-tight drop-shadow-sm fade-up">
+              <h1 className="font-display text-[40px] md:text-[64px] font-extrabold leading-[1.05] tracking-tight drop-shadow-sm fade-up">
                 AI Employees for Youth Sports Teams
               </h1>
               <p className="font-heading md:text-xl mt-4 max-w-3xl mx-auto text-white/90 fade-up fade-up-2">
@@ -84,6 +72,7 @@ export default function Home() {
                 <a href="#how" className="btn-ghost">See How It Works</a>
               </div>
 
+              {/* Trust badges */}
               <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto fade-up fade-up-3">
                 {["Replies in under 60s", "83% of inquiries convert", "98% of payments on time"].map((m, i) => (
                   <div key={m} className={`badge ${i === 1 ? "text-brand-char bg-white" : ""}`}>
@@ -97,16 +86,7 @@ export default function Home() {
         <div className="wave absolute bottom-0 left-0 right-0" aria-hidden="true" />
       </section>
 
-      {/* Director reassurance bar */}
-      <section className="bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-4 grid gap-3 sm:grid-cols-3 text-center">
-          <div className="text-brand-char/80 text-sm">Go live in 72 hours</div>
-          <div className="text-brand-char/80 text-sm">Works with your current tools</div>
-          <div className="text-brand-char/80 text-sm">Cancel anytime • 30-day risk-free</div>
-        </div>
-      </section>
-
-      {/* WHAT WE DO */}
+      {/* ===== WHAT WE DO ===== */}
       <section className="mx-auto max-w-6xl px-6 py-16">
         <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">What We Do</h2>
         <p className="text-center mt-2 text-brand-char/70">Simple, fast, clear — built for busy directors and parents.</p>
@@ -129,7 +109,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* PROOF & OUTCOMES */}
+      {/* ===== PROOF & OUTCOMES ===== */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">Proof & Outcomes</h2>
@@ -170,7 +150,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* HOW IT WORKS */}
+      {/* ===== HOW IT WORKS ===== */}
       <section id="how" className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">How It Works</h2>
@@ -196,7 +176,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CASE STUDY */}
+      {/* ===== CASE STUDY ===== */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <div className="rounded-3xl border border-gray-100 p-8 shadow-soft">
@@ -221,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FAQ */}
+      {/* ===== FAQ ===== */}
       <section className="bg-white">
         <div className="mx-auto max-w-6xl px-6 py-16">
           <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">FAQ</h2>
@@ -244,28 +224,25 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
+      {/* ===== FOOTER (logo only; no duplicate text) ===== */}
       <footer className="border-t">
-        <div className="mx-auto max-w-6xl px-6 py-10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={logoSrc}
-              alt="Underwater Marketing"
-              className="h-6 w-auto"
-              onError={() => {
-                if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
-              }}
-            />
-            <span className="font-semibold">Underwater Marketing</span>
-          </div>
+        <div className="mx-auto max-w-6xl px-6 py-10 flex items-center justify-between">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoSrc}
+            alt="Underwater Marketing"
+            className="h-7 w-auto object-contain"
+            onError={() => {
+              if (logoSrc !== "/logo.png") setLogoSrc("/logo.png");
+            }}
+          />
           <div className="text-sm text-brand-char/70">
             © {new Date().getFullYear()} Underwater Marketing. All rights reserved.
           </div>
         </div>
       </footer>
 
-      {/* Sticky CTA (spacer so nothing is hidden) */}
+      {/* Sticky CTA (with spacer so no overlap) */}
       {showSticky && (
         <>
           <div style={{ height: 56 }} aria-hidden="true" />
