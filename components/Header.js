@@ -7,12 +7,13 @@ export default function Header({ onBook }) {
       <div className="mx-auto max-w-6xl px-4 md:px-6 h-18 flex items-center justify-between">
         <a href="/" className="flex items-center gap-3 py-2">
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/logo-text.svg"
-            onError={(e) => { e.currentTarget.src = "/logo-text.png"; }}
-            alt="Underwater Marketing"
-            className="h-14 w-auto object-contain"
-          />
+<img
+  src="/logo-text.svg" 
+  onError={(e) => { e.currentTarget.src = "/logo-text.png"; }}
+  alt="Underwater Marketing"
+  className="h-20 w-auto object-contain"
+/>
+
           <span className="sr-only">Underwater Marketing</span>
         </a>
         <nav className="hidden md:flex items-center gap-10 text-brand-char font-semibold">
