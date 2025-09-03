@@ -15,22 +15,31 @@ export default function Home() {
     <>
       <Head>
         <title>Underwater Marketing — Elite Youth Sports Ops</title>
-        <meta name="description" content="We answer fast, book families, and keep payments on time. Go live in 72 hours." />
+        <meta
+          name="description"
+          content="We answer fast, book families, and keep payments on time. Go live in 72 hours."
+        />
       </Head>
 
-      {/* Top accent stripe */}
-      <div className="h-2 w-full" style={{background:"repeating-linear-gradient(135deg,#00D4FF 0 14px,#003A70 14px 28px)"}}/>
+      {/* TOP STRIPE */}
+      <div
+        className="h-2 w-full"
+        style={{
+          background:
+            "repeating-linear-gradient(135deg,#00D4FF 0 14px,#003A70 14px 28px)",
+        }}
+      />
 
-      {/* HERO (gradient + logo + wave) */}
+      {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0" style={{background:"linear-gradient(135deg,#003A70 0%,#0782B0 45%,#00D4FF 100%)"}}/>
-        <div className="relative mx-auto max-w-6xl px-6 pt-10 pb-18 md:pb-24 text-white">
-          {/* Nav */}
-          <header className="mb-10 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
-              <img src="/logo-text.png" alt="Underwater Marketing" className="h-10 w-auto"/>
+        <div className="absolute inset-0 hero-bg" aria-hidden="true" />
+        <div className="relative mx-auto max-w-6xl px-6 pt-8 pb-20 text-white">
+          {/* NAVBAR */}
+          <header className="mb-12 flex items-center justify-between">
+            <a href="/" className="nav-glass px-3 py-2 flex items-center gap-3">
+              <img src="/logo-text.png" alt="Underwater Marketing" className="h-9 w-auto" />
             </a>
-            <nav className="hidden md:flex items-center gap-8 text-white/90">
+            <nav className="hidden md:flex items-center gap-8 text-white/90 nav-glass px-4 py-2">
               <a href="/" className="hover:text-white">Home</a>
               <a href="/how-it-works" className="hover:text-white">How It Works</a>
               <a href="/case-studies/dorado-swim" className="hover:text-white">Case Study</a>
@@ -38,23 +47,26 @@ export default function Home() {
             </nav>
           </header>
 
+          {/* HERO CONTENT */}
           <div className="text-center">
-            <h1 className="font-display text-[40px] leading-[1.05] md:text-[64px] md:leading-[1.05] font-extrabold tracking-tight drop-shadow-sm">
+            <h1 className="font-display text-[42px] leading-[1.05] md:text-[68px] md:leading-[1.05] font-extrabold tracking-tight drop-shadow-sm fade-up">
               We Help Youth Sports Run Smarter.
             </h1>
-            <p className="font-heading md:text-xl mt-5 max-w-3xl mx-auto text-white/90">
+            <p className="font-heading md:text-xl mt-5 max-w-3xl mx-auto text-white/90 fade-up fade-up-2">
               We answer fast, book families, and keep payments on time. Go live in 72 hours.
             </p>
 
-            <div className="mt-8 flex items-center justify-center gap-4">
+            <div className="mt-8 flex items-center justify-center gap-4 fade-up fade-up-3">
               <button onClick={() => setOpen(true)} className="btn-primary">Book a Call</button>
               <a href="#how" className="btn-ghost">See How It Works</a>
             </div>
 
-            {/* Trust strip */}
+            {/* TRUST BADGES */}
             <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
-              {["<60s reply", "83% conversion", "98% on-time payments"].map((m)=>(
-                <div key={m} className="rounded-2xl bg-white/10 backdrop-blur px-4 py-3 text-white font-semibold">{m}</div>
+              {["<60s reply", "83% conversion", "98% on-time payments"].map((m,i)=>(
+                <div key={m} className={`badge ${i===1 ? 'text-brand-char bg-white' : ''}`}>
+                  {m}
+                </div>
               ))}
             </div>
           </div>
@@ -62,10 +74,21 @@ export default function Home() {
         <div className="wave" aria-hidden="true" />
       </section>
 
+      {/* DIRECTOR BAR */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-6 py-4 grid gap-3 sm:grid-cols-3 text-center">
+          <div className="text-brand-char/80 text-sm">Same-day reply • 72-hour setup</div>
+          <div className="text-brand-char/80 text-sm">Works with your tools • No new software</div>
+          <div className="text-brand-char/80 text-sm">Cancel anytime • 30-day risk-free</div>
+        </div>
+      </section>
+
       {/* WHAT WE DO */}
       <section className="mx-auto max-w-6xl px-6 py-14">
         <h2 className="font-heading text-3xl font-semibold text-center text-brand-char">What We Do</h2>
-        <p className="text-center mt-2 text-brand-char/70">Simple, fast, clear—for busy directors and parents.</p>
+        <p className="text-center mt-2 text-brand-char/70">
+          Simple, fast, clear—for busy directors and parents.
+        </p>
         <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
             { t:"Answer Parents Fast", s:"Parents get a quick, kind reply." },
@@ -115,7 +138,9 @@ export default function Home() {
                 <li>• No-shows down 35% → 8%</li>
                 <li>• Owners saved 15 hours/week</li>
               </ul>
-              <a href="/case-studies/dorado-swim/" className="inline-block mt-6 btn-outline">See the Case Study</a>
+              <a href="/case-studies/dorado-swim/" className="inline-block mt-6 btn-outline">
+                See the Case Study
+              </a>
             </div>
             <div className="rounded-2xl bg-gradient-to-br from-brand-blue/10 to-brand-teal/10 p-10 text-center">
               <div className="text-4xl font-display font-extrabold text-brand-blue">83% Conversion</div>
@@ -153,11 +178,13 @@ export default function Home() {
             <img src="/logo-text.png" alt="Underwater Marketing" className="h-6 w-auto"/>
             <span className="font-semibold">Underwater Marketing</span>
           </div>
-          <div className="text-sm text-brand-char/70">© {new Date().getFullYear()} Underwater Marketing. All rights reserved.</div>
+          <div className="text-sm text-brand-char/70">
+            © {new Date().getFullYear()} Underwater Marketing. All rights reserved.
+          </div>
         </div>
       </footer>
 
-      {/* STICKY CTA (slim) */}
+      {/* STICKY CTA */}
       {showSticky && (
         <div className="sticky-bar">
           <span className="font-heading">Need help? Book a call.</span>
@@ -171,7 +198,13 @@ export default function Home() {
           <div className="relative w-full max-w-3xl rounded-2xl bg-white p-4 shadow-2xl">
             <button aria-label="Close" onClick={() => setOpen(false)} className="absolute right-3 top-3 rounded-full border px-3 py-1 text-sm hover:bg-gray-50">Close</button>
             <div id="ghl-calendar" className="mt-6">
-              <iframe src="https://api.leadconnectorhq.com/widget/booking/moLbhpNSHi4Hd4YxkCLP" style={{width:"100%",border:"none",overflow:"hidden",height:"700px"}} scrolling="no" id="moLbhpNSHi4Hd4YxkCLP_1756838233028" title="Book a Call" />
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/booking/moLbhpNSHi4Hd4YxkCLP"
+                style={{width:"100%",border:"none",overflow:"hidden",height:"700px"}}
+                scrolling="no"
+                id="moLbhpNSHi4Hd4YxkCLP_1756838233028"
+                title="Book a Call"
+              />
               <br />
               <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
             </div>
