@@ -1,49 +1,32 @@
+/* vscode-css-lint disable unknownAtRules */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Helpers */
+
 /* Animated ocean gradient */
-.hero-bg{
+.hero-bg {
   background: linear-gradient(135deg, #003A70 0%, #0a75a8 45%, #00D4FF 100%);
   background-size: 200% 200%;
   animation: oceanShift 14s ease-in-out infinite;
 }
-@keyframes oceanShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes oceanShift {
+  0% { background-position: 0% 50% }
+  50% { background-position: 100% 50% }
+  100% { background-position: 0% 50% }
+}
 
 /* Wave glow */
-.wave{position:absolute;inset:auto 0 0 0;height:220px;pointer-events:none;opacity:.22;
-  background:radial-gradient(60% 60% at 50% 45%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 70%),
-             radial-gradient(40% 40% at 20% 90%, rgba(0,212,255,.45) 0%, rgba(0,212,255,0) 70%);
-  filter:blur(18px)}
-
-/* Header CTA */
-.btn-header{border-radius:12px;font-weight:700;padding:10px 16px;transition:all .15s ease}
-.btn-header-solid{background:#00C853;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.12)}
-.btn-header-solid:hover{filter:brightness(.96)}
-
-/* Primary / secondary buttons */
-.btn-primary{border-radius:16px;background:#00C853;color:#fff;font-weight:800;padding:12px 22px;
-  box-shadow:0 10px 30px rgba(0,0,0,.18);transition:transform .15s, box-shadow .15s}
-.btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 34px rgba(0,0,0,.22)}
-.btn-outline{border-radius:16px;border:2px solid #003A70;color:#003A70;font-weight:700;padding:10px 20px}
-.btn-outline:hover{background:#003A70;color:#fff}
-.btn-ghost{border-radius:16px;border:2px solid rgba(255,255,255,.85);color:#fff;font-weight:700;padding:10px 20px}
-.btn-ghost:hover{background:rgba(255,255,255,.12)}
-
-/* Cards & shadows */
-.card{border-radius:22px;border:1px solid #eee;padding:24px;box-shadow:0 10px 30px rgba(0,0,0,.08);transition:transform .15s, box-shadow .15s}
-.card:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(0,0,0,.12)}
-.shadow-soft{box-shadow:0 10px 30px rgba(0,0,0,.12)}
-
-/* Trust badges */
-.badge{border-radius:14px;background:rgba(255,255,255,.12);color:#fff;font-weight:700;padding:10px 14px;backdrop-filter:blur(6px)}
-
-/* Motion helpers */
-.fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .6s ease forwards}
-.fade-up-2{animation-delay:.08s}.fade-up-3{animation-delay:.16s}
-@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
-
-/* Sticky CTA */
-.sticky-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;background:#003A70;color:#fff;
-  padding:10px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 -8px 24px rgba(0,0,0,.22)}
-@media (max-width:640px){.sticky-bar{padding:8px 12px}.sticky-bar button{padding:8px 14px;border-radius:12px}}
+.wave {
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 220px;
+  pointer-events: none;
+  opacity: .22;
+  background:
+    radial-gradient(60% 60% at 50% 45%, rgba(255,255,255,.35) 0%, rgba(255,255,255,0) 70%),
+    radial-gradient(40% 40% at 20% 90%, rgba(0,212,255,.45) 0%, rgba(0,212,255,0) 70%);
+  filter: blur(18px);
+}
