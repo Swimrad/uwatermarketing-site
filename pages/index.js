@@ -4,8 +4,8 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
-import BookingCalendar from "@/components/BookingCalendar";
-import ContactForm from "@/components/ContactForm";
+import BookingCalendar from "../components/BookingCalendar";
+import ContactForm from "../components/ContactForm";
 
 export default function Home() {
   return (
