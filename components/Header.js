@@ -98,7 +98,7 @@ function CTAs() {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logo-uwm.svg"); // fallback to /logo.png if svg missing
+  const [logoSrc, setLogoSrc] = useState("/logo.png"); // put your logo file at /public/logo.png
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">

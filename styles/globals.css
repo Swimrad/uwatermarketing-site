@@ -1,8 +1,10 @@
-/* vscode-css-lint disable unknownAtRules */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Optional dark background so the new header looks right */
+:root { color-scheme: dark; }
+html, body { background: #000; }
 
 /* Custom Helpers */
 
