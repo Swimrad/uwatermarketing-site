@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 /**
- * One sticky header. No second nav. Even spacing. Baseline aligned.
- * Buttons: Primary = green, Secondary = teal (brand).
- * Logo height = 48px.
+ * One sticky header. Even spacing, baseline aligned.
+ * Primary CTA = emerald (green), Secondary = teal.
+ * Logo height ~48px via h-12/w-12.
  */
 const nav = {
   solutions: [
@@ -28,12 +28,11 @@ const nav = {
 };
 
 function DesktopNav() {
+  const item = "text-sm leading-6 text-white/90 hover:text-white";
   return (
     <nav className="hidden items-center gap-6 lg:flex">
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
-          Solutions
-        </summary>
+        <summary className={`${item} cursor-pointer list-none`}>Solutions</summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.solutions.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -44,9 +43,7 @@ function DesktopNav() {
       </details>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
-          Outcomes
-        </summary>
+        <summary className={`${item} cursor-pointer list-none`}>Outcomes</summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.outcomes.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -56,12 +53,10 @@ function DesktopNav() {
         </div>
       </details>
 
-      <Link href="/pricing" className="text-sm leading-6 text-white/90 hover:text-white">Pricing</Link>
+      <Link href="/pricing" className={item}>Pricing</Link>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
-          Resources
-        </summary>
+        <summary className={`${item} cursor-pointer list-none`}>Resources</summary>
         <div className="absolute left-0 mt-2 w-72 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.resources.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -72,9 +67,7 @@ function DesktopNav() {
       </details>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
-          Company
-        </summary>
+        <summary className={`${item} cursor-pointer list-none`}>Company</summary>
         <div className="absolute left-0 mt-2 w-56 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.company.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -84,26 +77,27 @@ function DesktopNav() {
         </div>
       </details>
 
-      <Link href="/login" className="text-sm leading-6 text-white/90 hover:text-white">Login</Link>
+      <Link href="/login" className={item}>Login</Link>
     </nav>
   );
 }
 
 function CTAs() {
+  const btnBase = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl";
   return (
     <div className="hidden items-center gap-3 lg:flex">
       {/* Secondary (teal) */}
       <Link
         href="#book-demo"
-        className="rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-sm font-semibold text-teal-200 hover:bg-teal-400/20"
+        className={`${btnBase} border border-teal-400/40 bg-teal-400/10 text-teal-200 hover:bg-teal-400/20`}
         aria-label="Book a 15-min Demo"
       >
         Book a 15-min Demo
       </Link>
-      {/* Primary (green) */}
+      {/* Primary (emerald) */}
       <Link
         href="#start-quickstart"
-        className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400"
+        className={`${btnBase} bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400`}
         aria-label="Start Quickstart"
       >
         Start Quickstart
@@ -114,14 +108,14 @@ function CTAs() {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logo.png"); // place your logo in /public/logo.png
+  const [logoSrc, setLogoSrc] = useState("/logo.png"); // put your logo at /public/logo.png
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3">
-        {/* Left: Logo + brand */}
+        {/* Left: logo + wordmark */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-12 w-12 shrink-0"> {/* 48px */}
+          <div className="relative h-12 w-12 shrink-0"> {/* ~48px */}
             <Image
               src={logoSrc}
               alt="Underwater Marketing"
@@ -136,7 +130,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Middle: Desktop nav */}
+        {/* Middle: desktop nav */}
         <DesktopNav />
 
         {/* Right: CTAs */}
