@@ -3,10 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-/**
- * Dark sticky header with SVG logo (big size).
- * Logo = /public/logo.svg
- */
+/** Dark sticky header, fixed height (64px). Bigger logo without growing the bar. */
 const nav = {
   solutions: [
     { label: "Clubs & Leagues", href: "/solutions/clubs" },
@@ -113,10 +110,11 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3">
-        {/* Brand */}
+      {/* fixed height bar */}
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
+        {/* Brand: 56px logo inside a 64px bar (no bar growth) */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-20 w-20 shrink-0">{/* 80px x 80px logo */}
+          <div className="relative h-14 w-14 shrink-0">{/* 56px x 56px */}
             <Image
               src="/logo.svg"
               alt="Underwater Marketing"
@@ -164,9 +162,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
-                Pricing
-              </Link>
+              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Pricing</Link>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -183,9 +179,8 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
-                Login
-              </Link>
+              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
+
               <div className="mt-2 flex gap-3">
                 <Link href="#demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
                   Book a Demo
