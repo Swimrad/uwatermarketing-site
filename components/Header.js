@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
-/** Dark sticky header, fixed height (64px). Bigger logo without growing the bar. */
 const nav = {
   solutions: [
     { label: "Clubs & Leagues", href: "/solutions/clubs" },
@@ -110,16 +109,15 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
-      {/* fixed height bar */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
-        {/* Brand: 56px logo inside a 64px bar (no bar growth) */}
+        {/* Brand: scale SVG inside fixed bar */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-14 w-14 shrink-0">{/* 56px x 56px */}
+          <div className="relative h-16 w-16 shrink-0 overflow-visible">
             <Image
               src="/logo.svg"
               alt="Underwater Marketing"
               fill
-              className="object-contain"
+              className="object-contain scale-[2.6]"   {/* scale factor boosts U size */}
               priority
             />
           </div>
