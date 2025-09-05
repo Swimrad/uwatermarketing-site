@@ -1,8 +1,7 @@
-// pages/index.js (imports only)
+// pages/index.js
 import Head from "next/head";
 import BookingCalendar from "../components/BookingCalendar";
 import ContactForm from "../components/ContactForm";
-
 
 export default function Home() {
   return (
