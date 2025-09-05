@@ -5,7 +5,6 @@ import Footer from "../components/Footer";
 import BookingCalendar from "../components/BookingCalendar";
 import ContactForm from "../components/ContactForm";
 
-
 export default function Home() {
   return (
     <>
@@ -24,9 +23,7 @@ export default function Home() {
       </Head>
 
       <main className="bg-slate-950 text-white">
-        {/* Sticky header + announcement */}
-        <AnnouncementBar />
-        <Navbar />
+        {/* Header + AnnouncementBar are rendered globally in _app.js */}
         <Hero />
 
         {/* Outcomes Section */}
@@ -59,7 +56,7 @@ export default function Home() {
             <div className="mt-6 flex items-center justify-center gap-3">
               <a
                 href="#contact"
-                className="inline-flex rounded-xl bg-brand-teal px-6 py-3 text-sm font-semibold text-brand-char hover:bg-cyan-300"
+                className="inline-flex rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 hover:bg-white/10"
               >
                 Go to Contact Form
               </a>
@@ -76,7 +73,7 @@ export default function Home() {
         {/* Booking Calendar Embed */}
         <section id="demo" className="bg-slate-950 py-20">
           <div className="mx-auto max-w-4xl px-6">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Book a 15-min Demo</h2>
+            <h2 className="mb-6 text-center text-2xl font-semibold">Book a 15-min Demo</h2>
             <BookingCalendar />
           </div>
         </section>
@@ -84,12 +81,11 @@ export default function Home() {
         {/* Contact Form Embed */}
         <section id="contact" className="bg-slate-950 py-20">
           <div className="mx-auto max-w-4xl px-6">
-            <h2 className="text-2xl font-semibold mb-6 text-center">Contact Us</h2>
+            <h2 className="mb-6 text-center text-2xl font-semibold">Contact Us</h2>
             <ContactForm />
           </div>
         </section>
 
-        {/* Footer */}
         <Footer />
       </main>
     </>
