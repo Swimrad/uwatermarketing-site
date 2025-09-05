@@ -9,17 +9,20 @@ module.exports = {
     extend: {
       colors: {
         brand: {
-          blue: "#003A70",
-          teal: "#00D4FF",
-          green: "#00C853",
-          char: "#2B2B2B",
+          dark: "#003A70",    // Deep ocean blue
+          blue: "#0A75A8",    // Primary mid-blue
+          electric: "#00D4FF",// Electric blue accent
+          char: "#2B2B2B",    // Charcoal
           white: "#FFFFFF"
         }
       },
       fontFamily: {
-        display: ["Montserrat", "ui-sans-serif", "system-ui"],
-        heading: ["Poppins", "ui-sans-serif", "system-ui"],
-        sans: ["Roboto", "ui-sans-serif", "system-ui"]
+        display: ["Montserrat", "ui-sans-serif", "system-ui"], // hero / big headlines
+        heading: ["Poppins", "ui-sans-serif", "system-ui"],    // section headings
+        sans: ["Roboto", "ui-sans-serif", "system-ui"]         // body text
+      },
+      boxShadow: {
+        brand: "0 10px 20px -8px rgba(0,212,255,0.35)" // glow in electric blue
       }
     }
   },

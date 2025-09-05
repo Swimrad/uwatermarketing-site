@@ -86,17 +86,19 @@ function CTAs() {
   const base = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl transition";
   return (
     <div className="hidden items-center gap-3 lg:flex">
+      {/* Secondary on dark: electric outline / light fill on hover */}
       <Link
         href="#demo"
         aria-label="Book a Demo"
-        className={`${base} border border-teal-400/40 bg-teal-400/10 text-teal-200 hover:bg-teal-400/20`}
+        className={`${base} border border-brand-electric/60 bg-brand-electric/10 text-brand-electric hover:bg-brand-electric/20`}
       >
         Book a Demo
       </Link>
+      {/* Primary on dark: solid electric blue */}
       <Link
         href="#start"
         aria-label="Start Quickstart"
-        className={`${base} bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400`}
+        className={`${base} bg-brand-electric text-black shadow-[0_10px_20px_-8px_rgba(0,212,255,0.35)] hover:bg-brand-blue`}
       >
         Start Quickstart
       </Link>
@@ -109,8 +111,9 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+      {/* fixed 64px bar */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
-        {/* Brand: scaled logo inside fixed bar */}
+        {/* Brand: big U inside fixed bar */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
           <div className="relative h-16 w-16 shrink-0 overflow-visible">
             <Image
@@ -121,7 +124,7 @@ export default function Header() {
               priority
             />
           </div>
-          <span className="select-none text-base font-semibold leading-6 tracking-tight text-white">
+          <span className="select-none text-base font-semibold leading-6 tracking-tight text-white font-display">
             Underwater Marketing
           </span>
         </Link>
@@ -129,6 +132,7 @@ export default function Header() {
         <DesktopNav />
         <CTAs />
 
+        {/* Mobile toggle */}
         <button
           className="lg:hidden rounded-lg border border-white/15 bg-white/5 p-2 text-white/90"
           aria-expanded={open}
@@ -139,6 +143,7 @@ export default function Header() {
         </button>
       </div>
 
+      {/* Mobile sheet (dark) */}
       {open && (
         <div id="mobile-menu" className="border-t border-white/10 bg-black/95 lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-4">
@@ -159,9 +164,11 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                 Pricing
               </Link>
+
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -170,6 +177,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Company</div>
                 {nav.company.map((i) => (
@@ -178,14 +186,22 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                 Login
               </Link>
+
               <div className="mt-2 flex gap-3">
-                <Link href="#demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
+                <Link
+                  href="#demo"
+                  className="flex-1 rounded-xl border border-brand-electric/60 bg-brand-electric/10 px-4 py-2 text-center text-sm font-semibold text-brand-electric hover:bg-brand-electric/20"
+                >
                   Book a Demo
                 </Link>
-                <Link href="#start" className="flex-1 rounded-xl bg-emerald-500 px-4 py-2 text-center text-sm font-semibold text-black hover:bg-emerald-400">
+                <Link
+                  href="#start"
+                  className="flex-1 rounded-xl bg-brand-electric px-4 py-2 text-center text-sm font-semibold text-black shadow-[0_10px_20px_-8px_rgba(0,212,255,0.35)] hover:bg-brand-blue"
+                >
                   Start Quickstart
                 </Link>
               </div>
