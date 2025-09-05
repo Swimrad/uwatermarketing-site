@@ -110,14 +110,14 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
-        {/* Brand: scale SVG inside fixed bar */}
+        {/* Brand: scaled logo inside fixed bar */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
           <div className="relative h-16 w-16 shrink-0 overflow-visible">
             <Image
               src="/logo.svg"
               alt="Underwater Marketing"
               fill
-              className="object-contain scale-[2.6]"   {/* scale factor boosts U size */}
+              className="object-contain scale-[2.6]"
               priority
             />
           </div>
@@ -129,7 +129,6 @@ export default function Header() {
         <DesktopNav />
         <CTAs />
 
-        {/* Mobile toggle */}
         <button
           className="lg:hidden rounded-lg border border-white/15 bg-white/5 p-2 text-white/90"
           aria-expanded={open}
@@ -160,7 +159,9 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Pricing</Link>
+              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
+                Pricing
+              </Link>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -177,8 +178,9 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
-
+              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
+                Login
+              </Link>
               <div className="mt-2 flex gap-3">
                 <Link href="#demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
                   Book a Demo
