@@ -1,7 +1,13 @@
+// components/Header.js
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
+/**
+ * One sticky header. No second nav. Even spacing. Baseline aligned.
+ * Buttons: Primary = green, Secondary = teal (brand).
+ * Logo height = 48px.
+ */
 const nav = {
   solutions: [
     { label: "Clubs & Leagues", href: "/solutions/clubs" },
@@ -25,7 +31,9 @@ function DesktopNav() {
   return (
     <nav className="hidden items-center gap-6 lg:flex">
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm text-white/90 hover:text-white">Solutions</summary>
+        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
+          Solutions
+        </summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.solutions.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -36,7 +44,9 @@ function DesktopNav() {
       </details>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm text-white/90 hover:text-white">Outcomes</summary>
+        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
+          Outcomes
+        </summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.outcomes.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -46,10 +56,12 @@ function DesktopNav() {
         </div>
       </details>
 
-      <Link href="/pricing" className="text-sm text-white/90 hover:text-white">Pricing</Link>
+      <Link href="/pricing" className="text-sm leading-6 text-white/90 hover:text-white">Pricing</Link>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm text-white/90 hover:text-white">Resources</summary>
+        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
+          Resources
+        </summary>
         <div className="absolute left-0 mt-2 w-72 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.resources.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -60,7 +72,9 @@ function DesktopNav() {
       </details>
 
       <details className="group relative">
-        <summary className="cursor-pointer list-none text-sm text-white/90 hover:text-white">Company</summary>
+        <summary className="cursor-pointer list-none text-sm leading-6 text-white/90 hover:text-white">
+          Company
+        </summary>
         <div className="absolute left-0 mt-2 w-56 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
           {nav.company.map((i) => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
@@ -70,7 +84,7 @@ function DesktopNav() {
         </div>
       </details>
 
-      <Link href="/login" className="text-sm text-white/90 hover:text-white">Login</Link>
+      <Link href="/login" className="text-sm leading-6 text-white/90 hover:text-white">Login</Link>
     </nav>
   );
 }
@@ -78,16 +92,18 @@ function DesktopNav() {
 function CTAs() {
   return (
     <div className="hidden items-center gap-3 lg:flex">
+      {/* Secondary (teal) */}
       <Link
         href="#book-demo"
-        className="rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-sm font-semibold text-white/90 hover:bg-white/10"
-        aria-label="Book a demo"
+        className="rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-sm font-semibold text-teal-200 hover:bg-teal-400/20"
+        aria-label="Book a 15-min Demo"
       >
-        Book a Demo
+        Book a 15-min Demo
       </Link>
+      {/* Primary (green) */}
       <Link
         href="#start-quickstart"
-        className="rounded-xl bg-cyan-500 px-4 py-2 text-sm font-semibold text-black shadow-lg shadow-cyan-500/30 hover:bg-cyan-400"
+        className="rounded-xl bg-emerald-500 px-4 py-2 text-sm font-semibold text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400"
         aria-label="Start Quickstart"
       >
         Start Quickstart
@@ -98,28 +114,32 @@ function CTAs() {
 
 export default function Header() {
   const [open, setOpen] = useState(false);
-  const [logoSrc, setLogoSrc] = useState("/logo-uwm.svg"); // fallback to /logo.png if svg missing
+  const [logoSrc, setLogoSrc] = useState("/logo.png"); // place your logo in /public/logo.png
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3">
-        <div className="flex items-center gap-3">
-          <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-            <div className="relative h-14 w-14 shrink-0">
-              <Image
-                src={logoSrc}
-                alt="Underwater Marketing"
-                fill
-                sizes="56px"
-                priority
-                onError={() => setLogoSrc("/logo.png")}
-              />
-            </div>
-            <span className="select-none text-base font-semibold tracking-tight text-white">Underwater Marketing</span>
-          </Link>
-        </div>
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3">
+        {/* Left: Logo + brand */}
+        <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
+          <div className="relative h-12 w-12 shrink-0"> {/* 48px */}
+            <Image
+              src={logoSrc}
+              alt="Underwater Marketing"
+              fill
+              sizes="48px"
+              priority
+              onError={() => setLogoSrc("/logo.png")}
+            />
+          </div>
+          <span className="select-none text-base font-semibold leading-6 tracking-tight text-white">
+            Underwater Marketing
+          </span>
+        </Link>
 
+        {/* Middle: Desktop nav */}
         <DesktopNav />
+
+        {/* Right: CTAs */}
         <CTAs />
 
         {/* Mobile toggle */}
@@ -133,9 +153,9 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile sheet */}
+      {/* Mobile menu */}
       {open && (
-        <div id="mobile-menu" className="border-t border-white/10 bg-black/90 lg:hidden">
+        <div id="mobile-menu" className="border-t border-white/10 bg-black/95 lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-4">
             <div className="grid gap-4">
               <div>
@@ -174,8 +194,12 @@ export default function Header() {
               <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
 
               <div className="mt-2 flex gap-3">
-                <Link href="#book-demo" className="flex-1 rounded-xl border border-white/15 bg-white/5 px-4 py-2 text-center text-sm font-semibold text-white/90 hover:bg-white/10">Book a Demo</Link>
-                <Link href="#start-quickstart" className="flex-1 rounded-xl bg-cyan-500 px-4 py-2 text-center text-sm font-semibold text-black hover:bg-cyan-400">Start Quickstart</Link>
+                <Link href="#book-demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
+                  Book a 15-min Demo
+                </Link>
+                <Link href="#start-quickstart" className="flex-1 rounded-xl bg-emerald-500 px-4 py-2 text-center text-sm font-semibold text-black hover:bg-emerald-400">
+                  Start Quickstart
+                </Link>
               </div>
             </div>
           </div>
