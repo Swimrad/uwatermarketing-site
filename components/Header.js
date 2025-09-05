@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useState } from "react";
 
 /**
- * DARK sticky header (brand colors: emerald primary, teal secondary).
- * Uses /public/logo.svg at 48px (no white box).
+ * Dark sticky header with SVG logo (big size).
+ * Logo = /public/logo.svg
  */
 const nav = {
   solutions: [
@@ -32,6 +32,7 @@ function DesktopNav() {
     "absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-black/90 p-2 shadow-2xl backdrop-blur";
   const link =
     "block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10";
+
   return (
     <nav className="hidden items-center gap-6 lg:flex">
       <details className="group relative">
@@ -89,7 +90,6 @@ function CTAs() {
   const base = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl transition";
   return (
     <div className="hidden items-center gap-3 lg:flex">
-      {/* Secondary (teal on dark) */}
       <Link
         href="#demo"
         aria-label="Book a Demo"
@@ -97,7 +97,6 @@ function CTAs() {
       >
         Book a Demo
       </Link>
-      {/* Primary (emerald on dark) */}
       <Link
         href="#start"
         aria-label="Start Quickstart"
@@ -117,14 +116,15 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          {/* Use explicit width/height for SVG to avoid layout shift */}
-          <Image
-            src="/logo.svg"
-            alt="Underwater Marketing"
-            width={48}
-            height={48}
-            priority
-          />
+          <div className="relative h-20 w-20 shrink-0">{/* 80px x 80px logo */}
+            <Image
+              src="/logo.svg"
+              alt="Underwater Marketing"
+              fill
+              className="object-contain"
+              priority
+            />
+          </div>
           <span className="select-none text-base font-semibold leading-6 tracking-tight text-white">
             Underwater Marketing
           </span>
@@ -144,7 +144,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile sheet (dark) */}
       {open && (
         <div id="mobile-menu" className="border-t border-white/10 bg-black/95 lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-4">
@@ -165,11 +164,9 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
               <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                 Pricing
               </Link>
-
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -178,7 +175,6 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Company</div>
                 {nav.company.map((i) => (
@@ -187,11 +183,9 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
               <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                 Login
               </Link>
-
               <div className="mt-2 flex gap-3">
                 <Link href="#demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
                   Book a Demo
