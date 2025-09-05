@@ -4,9 +4,9 @@ import Image from "next/image";
 import { useState } from "react";
 
 /**
- * One sticky header. Even spacing, baseline aligned.
+ * Single sticky header, baseline-aligned.
  * Primary CTA = emerald (green), Secondary = teal.
- * Logo height ~48px via h-12/w-12.
+ * Logo ~48px (h-12/w-12). No second nav anywhere else.
  */
 const nav = {
   solutions: [
@@ -34,7 +34,7 @@ function DesktopNav() {
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Solutions</summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
-          {nav.solutions.map((i) => (
+          {nav.solutions.map(i => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
               {i.label}
             </Link>
@@ -45,7 +45,7 @@ function DesktopNav() {
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Outcomes</summary>
         <div className="absolute left-0 mt-2 w-64 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
-          {nav.outcomes.map((i) => (
+          {nav.outcomes.map(i => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
               {i.label}
             </Link>
@@ -58,7 +58,7 @@ function DesktopNav() {
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Resources</summary>
         <div className="absolute left-0 mt-2 w-72 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
-          {nav.resources.map((i) => (
+          {nav.resources.map(i => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
               {i.label}
             </Link>
@@ -69,7 +69,7 @@ function DesktopNav() {
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Company</summary>
         <div className="absolute left-0 mt-2 w-56 rounded-xl border border-white/10 bg-white/5 p-2 shadow-2xl backdrop-blur">
-          {nav.company.map((i) => (
+          {nav.company.map(i => (
             <Link key={i.href} href={i.href} className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10">
               {i.label}
             </Link>
@@ -83,21 +83,21 @@ function DesktopNav() {
 }
 
 function CTAs() {
-  const btnBase = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl";
+  const btn = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl";
   return (
     <div className="hidden items-center gap-3 lg:flex">
       {/* Secondary (teal) */}
       <Link
-        href="#book-demo"
-        className={`${btnBase} border border-teal-400/40 bg-teal-400/10 text-teal-200 hover:bg-teal-400/20`}
-        aria-label="Book a 15-min Demo"
+        href="#demo"
+        className={`${btn} border border-teal-400/40 bg-teal-400/10 text-teal-200 hover:bg-teal-400/20`}
+        aria-label="Book a Demo"
       >
-        Book a 15-min Demo
+        Book a Demo
       </Link>
       {/* Primary (emerald) */}
       <Link
-        href="#start-quickstart"
-        className={`${btnBase} bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400`}
+        href="#start"
+        className={`${btn} bg-emerald-500 text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400`}
         aria-label="Start Quickstart"
       >
         Start Quickstart
@@ -115,7 +115,7 @@ export default function Header() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3">
         {/* Left: logo + wordmark */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-12 w-12 shrink-0"> {/* ~48px */}
+          <div className="relative h-12 w-12 shrink-0">{/* ~48px */}
             <Image
               src={logoSrc}
               alt="Underwater Marketing"
@@ -130,10 +130,7 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Middle: desktop nav */}
         <DesktopNav />
-
-        {/* Right: CTAs */}
         <CTAs />
 
         {/* Mobile toggle */}
@@ -154,7 +151,7 @@ export default function Header() {
             <div className="grid gap-4">
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Solutions</div>
-                {nav.solutions.map((i) => (
+                {nav.solutions.map(i => (
                   <Link key={i.href} href={i.href} className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                     {i.label}
                   </Link>
@@ -162,7 +159,7 @@ export default function Header() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Outcomes</div>
-                {nav.outcomes.map((i) => (
+                {nav.outcomes.map(i => (
                   <Link key={i.href} href={i.href} className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                     {i.label}
                   </Link>
@@ -171,7 +168,7 @@ export default function Header() {
               <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Pricing</Link>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
-                {nav.resources.map((i) => (
+                {nav.resources.map(i => (
                   <Link key={i.href} href={i.href} className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                     {i.label}
                   </Link>
@@ -179,7 +176,7 @@ export default function Header() {
               </div>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Company</div>
-                {nav.company.map((i) => (
+                {nav.company.map(i => (
                   <Link key={i.href} href={i.href} className="block rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
                     {i.label}
                   </Link>
@@ -188,10 +185,10 @@ export default function Header() {
               <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
 
               <div className="mt-2 flex gap-3">
-                <Link href="#book-demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
-                  Book a 15-min Demo
+                <Link href="#demo" className="flex-1 rounded-xl border border-teal-400/40 bg-teal-400/10 px-4 py-2 text-center text-sm font-semibold text-teal-200 hover:bg-teal-400/20">
+                  Book a Demo
                 </Link>
-                <Link href="#start-quickstart" className="flex-1 rounded-xl bg-emerald-500 px-4 py-2 text-center text-sm font-semibold text-black hover:bg-emerald-400">
+                <Link href="#start" className="flex-1 rounded-xl bg-emerald-500 px-4 py-2 text-center text-sm font-semibold text-black hover:bg-emerald-400">
                   Start Quickstart
                 </Link>
               </div>

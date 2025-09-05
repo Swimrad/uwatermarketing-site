@@ -1,91 +1,63 @@
 // components/Hero.jsx
 export default function Hero() {
   return (
-    <section className="relative isolate overflow-hidden bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950 text-white">
-      {/* Accent background */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 opacity-40"
-        style={{
-          background:
-            "radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,0.25), transparent 60%), radial-gradient(900px 500px at 90% 10%, rgba(59,130,246,0.18), transparent 60%)",
-        }}
-      />
+    <section className="relative overflow-hidden bg-slate-950">
+      {/* Animated gradient background */}
+      <div className="hero-bg absolute inset-0 -z-10 opacity-[0.28]" />
 
-      <div className="mx-auto max-w-7xl px-6 pb-16 pt-28 sm:pt-32 lg:px-8 lg:pb-24">
-        {/* Micro announcement */}
-        <div className="mb-6 flex justify-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-slate-200 ring-1 ring-white/10 backdrop-blur">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-cyan-400" />
-            <span className="font-medium">Proof-led growth for youth sports</span>
-            <span aria-hidden>•</span>
-            <span>Case study: 83% trial→enroll</span>
-          </div>
+      {/* Reduced vertical padding */}
+      <div className="mx-auto max-w-7xl px-6 pt-12 pb-10 lg:pt-16 lg:pb-12">
+        {/* Headline + subhead */}
+        <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">
+          Fill Every Roster Automatically
+        </h1>
+
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-white/80 sm:text-lg">
+          Without chasing missed calls or losing families to slow follow-up.
+        </p>
+
+        {/* CTAs */}
+        <div className="mt-6 flex flex-wrap items-center gap-4">
+          <a
+            href="#start"
+            className="rounded-xl bg-emerald-500 px-5 py-3 text-sm font-semibold text-black shadow-lg shadow-emerald-500/25 hover:bg-emerald-400"
+            aria-label="Start Quickstart"
+          >
+            Start Quickstart
+          </a>
+          <a
+            href="#demo"
+            className="rounded-xl border border-teal-400/40 bg-teal-400/10 px-5 py-3 text-sm font-semibold text-teal-200 hover:bg-teal-400/20"
+            aria-label="Book a Demo"
+          >
+            Book a Demo
+          </a>
+          <span className="text-xs text-white/60">Go-live in 72h · 30-day risk-free</span>
         </div>
 
-        {/* Hero Headline */}
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-balance text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-            How to Fill Every Class and Roster Automatically
-          </h1>
-          <p className="mt-6 text-pretty text-base/7 text-slate-300 sm:text-lg/8">
-            <span className="font-medium text-slate-100">Without chasing missed calls</span>{" "}
-            or losing families to slow follow-up. Our 24/7 AI enrollment system captures
-            inquiries, books trials, nurtures parents, and follows through on payments —
-            so your coaches can coach.
-          </p>
-
-          {/* CTAs */}
-          <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-xl bg-brand-teal px-6 py-3 text-sm font-semibold text-brand-char shadow-lg shadow-cyan-500/20 transition hover:translate-y-0.5 hover:bg-cyan-300"
-            >
-              Start Quickstart
-            </a>
-            <a
-              href="#demo"
-              className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 transition hover:translate-y-0.5 hover:bg-white/10"
-            >
-              Book a 15-min Demo
-            </a>
+        {/* Trust / proof strip (keep metrics only; no client logos) */}
+        <div className="mt-8 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+            <div className="text-3xl font-extrabold text-white sm:text-4xl">&lt;60s</div>
+            <div className="text-xs text-white/70">Avg. response time</div>
           </div>
-
-          {/* Proof row */}
-          <dl className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <dt className="text-xs text-slate-400">Avg. Lead Response</dt>
-              <dd className="mt-1 text-lg font-semibold text-white">&lt; 60s</dd>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <dt className="text-xs text-slate-400">Trial → Enrollment</dt>
-              <dd className="mt-1 text-lg font-semibold text-white">Up to 83%</dd>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <dt className="text-xs text-slate-400">On-Time Payments</dt>
-              <dd className="mt-1 text-lg font-semibold text-white">98%+</dd>
-            </div>
-            <div className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3">
-              <dt className="text-xs text-slate-400">Coach Time Saved</dt>
-              <dd className="mt-1 text-lg font-semibold text-white">15+ hrs/wk</dd>
-            </div>
-          </dl>
-        </div>
-
-        {/* Trust strip */}
-        <div className="mt-14 border-t border-white/10 pt-8">
-          <p className="text-center text-xs text-slate-400">Trusted by youth sports clubs & academies</p>
-          <div className="mt-4 grid grid-cols-2 items-center gap-6 opacity-80 sm:grid-cols-4 lg:grid-cols-6">
-            {Array.from({ length: 6 }).map((_, i) => (
-              <div
-                key={i}
-                className="h-8 rounded-md bg-white/5 ring-1 ring-white/10"
-                aria-label="Partner logo placeholder"
-              />
-            ))}
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+            <div className="text-3xl font-extrabold text-white sm:text-4xl">83%</div>
+            <div className="text-xs text-white/70">Trial → paid</div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+            <div className="text-3xl font-extrabold text-white sm:text-4xl">98%</div>
+            <div className="text-xs text-white/70">On-time payments</div>
+          </div>
+          <div className="rounded-2xl border border-white/10 bg-white/5 p-4 text-center">
+            <div className="text-3xl font-extrabold text-white sm:text-4xl">15h+</div>
+            <div className="text-xs text-white/70">Coach time saved / wk</div>
           </div>
         </div>
       </div>
+
+      {/* Soft wave glow footer */}
+      <div className="wave" />
     </section>
   );
 }
