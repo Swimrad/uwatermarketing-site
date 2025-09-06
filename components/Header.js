@@ -41,7 +41,6 @@ function DesktopNav() {
           ))}
         </div>
       </details>
-
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Outcomes</summary>
         <div className={panel}>
@@ -52,9 +51,7 @@ function DesktopNav() {
           ))}
         </div>
       </details>
-
       <Link href="/pricing" className={item}>Pricing</Link>
-
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Resources</summary>
         <div className={panel.replace("w-64", "w-72")}>
@@ -65,7 +62,6 @@ function DesktopNav() {
           ))}
         </div>
       </details>
-
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Company</summary>
         <div className={panel.replace("w-64", "w-56")}>
@@ -76,17 +72,16 @@ function DesktopNav() {
           ))}
         </div>
       </details>
-
       <Link href="/login" className={item}>Login</Link>
     </nav>
   );
 }
 
 function CTAs() {
-  const base = "text-sm leading-6 font-semibold px-4 py-2 rounded-xl transition";
+  const base =
+    "text-sm leading-6 font-semibold px-4 py-2 rounded-xl transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric focus-visible:ring-offset-2 focus-visible:ring-offset-black";
   return (
     <div className="hidden items-center gap-3 lg:flex">
-      {/* Secondary on dark: electric outline / light fill on hover */}
       <Link
         href="#demo"
         aria-label="Book a Demo"
@@ -94,7 +89,6 @@ function CTAs() {
       >
         Book a Demo
       </Link>
-      {/* Primary on dark: solid electric blue */}
       <Link
         href="#start"
         aria-label="Start Quickstart"
@@ -111,20 +105,19 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
-      {/* fixed 64px bar */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
-        {/* Brand: big U inside fixed bar */}
+        {/* Brand: 48px frame, balanced scale */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-16 w-16 shrink-0 overflow-visible">
+          <div className="relative h-12 w-12 shrink-0 overflow-visible">
             <Image
               src="/logo.svg"
               alt="Underwater Marketing"
               fill
-              className="object-contain scale-[2.6]"
+              className="object-contain scale-[2.2]"
               priority
             />
           </div>
-          <span className="select-none text-base font-semibold leading-6 tracking-tight text-white font-display">
+          <span className="font-display select-none text-base font-semibold leading-6 tracking-tight text-white">
             Underwater Marketing
           </span>
         </Link>
@@ -132,9 +125,8 @@ export default function Header() {
         <DesktopNav />
         <CTAs />
 
-        {/* Mobile toggle */}
         <button
-          className="lg:hidden rounded-lg border border-white/15 bg-white/5 p-2 text-white/90"
+          className="lg:hidden rounded-lg border border-white/15 bg-white/5 p-2 text-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-electric focus-visible:ring-offset-2 focus-visible:ring-offset-black"
           aria-expanded={open}
           aria-controls="mobile-menu"
           onClick={() => setOpen(!open)}
@@ -143,7 +135,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile sheet (dark) */}
       {open && (
         <div id="mobile-menu" className="border-t border-white/10 bg-black/95 lg:hidden">
           <div className="mx-auto max-w-7xl px-4 py-4">
@@ -164,11 +155,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
-              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
-                Pricing
-              </Link>
-
+              <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Pricing</Link>
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -177,7 +164,6 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Company</div>
                 {nav.company.map((i) => (
@@ -186,22 +172,12 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
-
-              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">
-                Login
-              </Link>
-
+              <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
               <div className="mt-2 flex gap-3">
-                <Link
-                  href="#demo"
-                  className="flex-1 rounded-xl border border-brand-electric/60 bg-brand-electric/10 px-4 py-2 text-center text-sm font-semibold text-brand-electric hover:bg-brand-electric/20"
-                >
+                <Link href="#demo" className="flex-1 rounded-xl border border-brand-electric/60 bg-brand-electric/10 px-4 py-2 text-center text-sm font-semibold text-brand-electric hover:bg-brand-electric/20">
                   Book a Demo
                 </Link>
-                <Link
-                  href="#start"
-                  className="flex-1 rounded-xl bg-brand-electric px-4 py-2 text-center text-sm font-semibold text-black shadow-[0_10px_20px_-8px_rgba(0,212,255,0.35)] hover:bg-brand-blue"
-                >
+                <Link href="#start" className="flex-1 rounded-xl bg-brand-electric px-4 py-2 text-center text-sm font-semibold text-black hover:bg-brand-blue">
                   Start Quickstart
                 </Link>
               </div>
