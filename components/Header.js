@@ -41,6 +41,7 @@ function DesktopNav() {
           ))}
         </div>
       </details>
+
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Outcomes</summary>
         <div className={panel}>
@@ -51,7 +52,9 @@ function DesktopNav() {
           ))}
         </div>
       </details>
+
       <Link href="/pricing" className={item}>Pricing</Link>
+
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Resources</summary>
         <div className={panel.replace("w-64", "w-72")}>
@@ -62,6 +65,7 @@ function DesktopNav() {
           ))}
         </div>
       </details>
+
       <details className="group relative">
         <summary className={`${item} cursor-pointer list-none`}>Company</summary>
         <div className={panel.replace("w-64", "w-56")}>
@@ -72,6 +76,7 @@ function DesktopNav() {
           ))}
         </div>
       </details>
+
       <Link href="/login" className={item}>Login</Link>
     </nav>
   );
@@ -105,15 +110,16 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur">
+      {/* fixed 64px row; bigger logo inside without growing the bar */}
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4">
-        {/* Brand: 48px frame, balanced scale */}
         <Link href="/" className="flex items-center gap-3" aria-label="Underwater Marketing Home">
-          <div className="relative h-12 w-12 shrink-0 overflow-visible">
+          {/* 64px frame, scaled art fills but preserves baseline */}
+          <div className="relative h-16 w-16 shrink-0 overflow-visible">
             <Image
               src="/logo.svg"
               alt="Underwater Marketing"
               fill
-              className="object-contain scale-[2.2]"
+              className="object-contain scale-[1.9] -translate-y-[1px]"
               priority
             />
           </div>
@@ -155,7 +161,9 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <Link href="/pricing" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Pricing</Link>
+
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Resources</div>
                 {nav.resources.map((i) => (
@@ -164,6 +172,7 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <div>
                 <div className="text-xs uppercase tracking-wider text-white/50">Company</div>
                 {nav.company.map((i) => (
@@ -172,12 +181,20 @@ export default function Header() {
                   </Link>
                 ))}
               </div>
+
               <Link href="/login" className="rounded-lg px-2 py-2 text-sm text-white/90 hover:bg-white/10">Login</Link>
+
               <div className="mt-2 flex gap-3">
-                <Link href="#demo" className="flex-1 rounded-xl border border-brand-electric/60 bg-brand-electric/10 px-4 py-2 text-center text-sm font-semibold text-brand-electric hover:bg-brand-electric/20">
+                <Link
+                  href="#demo"
+                  className="flex-1 rounded-xl border border-brand-electric/60 bg-brand-electric/10 px-4 py-2 text-center text-sm font-semibold text-brand-electric hover:bg-brand-electric/20"
+                >
                   Book a Demo
                 </Link>
-                <Link href="#start" className="flex-1 rounded-xl bg-brand-electric px-4 py-2 text-center text-sm font-semibold text-black hover:bg-brand-blue">
+                <Link
+                  href="#start"
+                  className="flex-1 rounded-xl bg-brand-electric px-4 py-2 text-center text-sm font-semibold text-black hover:bg-brand-blue"
+                >
                   Start Quickstart
                 </Link>
               </div>
